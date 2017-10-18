@@ -20,9 +20,9 @@
 class Livraison {
     private $_nolivraison;
     private $_contrat; // objet de la classr contrat
-    private $_silo; // objet de la classe silo
     private $_dateliv;
     private $_qteliv;
+    private $_silo; // objet de la classe silo
  
  
  
@@ -32,15 +32,15 @@ class Livraison {
     public function __construct (
             $p_nolivraison,
             $p_contrat,
-            $p_silo,
             $p_dateliv,
-            $p_qteliv
+            $p_qteliv,
+            $p_silo
     ) {
         $this->setNoLivraison($p_nolivraison);
         $this->setContrat($p_contrat);
-        $this->setSilo($p_silo);
         $this->setDateLiv($p_dateliv);
         $this->setQteLiv($p_qteliv);
+        $this->setSilo($p_silo);
     }
    
     /**
@@ -54,16 +54,16 @@ class Livraison {
         return $this->_contrat;
     }
    
-    public function getSilo(){
-        return $this->_silo;
-    }
-   
     public function getDateLiv(){
         return $this->_dateliv;
     }
  
     public function getQteLiv(){
         return $this->_qteliv;
+    }
+
+    public function getSilo(){
+        return $this->_silo;
     }    
    
     /**
@@ -76,10 +76,6 @@ class Livraison {
     public function setContrat($p_contrat){
         $this->_contrat = $p_contrat;
     }
-    
-    public function setSilo($p_silo){
-        $this->_silo = $p_silo;
-    }
    
     public function setDateLiv($p_dateliv){
         $this->_dateliv = $p_dateliv;
@@ -87,6 +83,10 @@ class Livraison {
  
     public function setQteLiv($p_qteliv){
         $this->_qteliv = $p_qteliv;
+    }
+    
+    public function setSilo($p_silo){
+        $this->_silo = $p_silo;
     }
 }
 ?>
