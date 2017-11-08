@@ -28,6 +28,7 @@ class Produit {
     private $_codecategorie;
     private $_telclient;
     private $_melclient;
+    
 
     /**
      * Constructeur 
