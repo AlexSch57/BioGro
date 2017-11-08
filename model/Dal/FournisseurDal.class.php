@@ -69,7 +69,8 @@ class FournisseurDal {
             $date_adhesion, 
             $tel_fourn, 
             $fax_fourn,
-            $mel_fourn
+            $mel_fourn,
+            $id_membre
     ) {
         $cnx = new PdoDao();
         $qry = 'INSERT INTO fournisseur VALUES (?,?,?,?,?,?,?)';
@@ -80,13 +81,14 @@ class FournisseurDal {
             $date_adhesion, 
             $tel_fourn, 
             $fax_fourn,
-            $mel_fourn
+            $mel_fourn,
+            $id_membre
             )
         );
         if (is_a($res,'PDOException')) {
             return PDO_EXCEPTION_VALUE;
         }
-        return $nom;
+        return $res;
     }
     
     /**
@@ -108,7 +110,8 @@ class FournisseurDal {
             $date_adhesion, 
             $tel_fourn, 
             $fax_fourn,
-            $mel_fourn
+            $mel_fourn,
+            $id_membre
     ) {
         $cnx = new PdoDao();
         $qry = 'UPDATE fournisseur SET
@@ -119,6 +122,7 @@ class FournisseurDal {
                     telfourn = ?,
                     faxfourn = ?                    
                     melfourn = ?
+                    id_membre = ?
                 WHERE 
                     nofourn = ?';
         $res = $cnx->execSQL($qry,array(
@@ -129,7 +133,8 @@ class FournisseurDal {
             $date_adhesion, 
             $tel_fourn, 
             $fax_fourn,
-            $mel_fourn
+            $mel_fourn,
+            $id_membre
             ));
         if (is_a($res,'PDOException')) {
             return PDO_EXCEPTION_VALUE;

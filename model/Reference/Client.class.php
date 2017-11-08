@@ -28,13 +28,13 @@ class Produit {
     private $_codecategorie;
     private $_telclient;
     private $_melclient;
-    
+    private $_membre; // objet de la classe membre
 
     /**
      * Constructeur 
      */
     public function __construct(
-    $p_noclient, $p_nomclient, $p_adrclient, $p_codepostal, $p_codecategorie, $p_telclient, $p_melclient
+    $p_noclient, $p_nomclient, $p_adrclient, $p_codepostal, $p_codecategorie, $p_telclient, $p_melclient, $p_membre
     ) {
         $this->setNoClient($p_noclient);
         $this->setNomClient($p_nomclient);
@@ -43,6 +43,7 @@ class Produit {
         $this->setCodeCategorie($p_codecategorie);
         $this->setTelClient($p_telclient);
         $this->setMelClient($p_melclient);
+        $this->setMembre($p_membre);
     }
 
     /**
@@ -75,40 +76,44 @@ class Produit {
     public function getMelClient() {
         return $this->_melclient;
     }
+    
+    public function getMembre() {
+        return $this->_membre;
+    }
 
     /**
      * Mutateurs
      */
     public function setNoClient($p_noclient) {
-        $this->_codecereale = $p_noclient;
+        $this->_noclient = $p_noclient;
     }
 
     public function setNomClient($p_nomclient) {
-        $this->_variete = $p_nomclient;
+        $this->_nomclient = $p_nomclient;
     }
 
     public function setAdrClient($p_adrclient) {
-        $this->_prixachatref = $p_adrclient;
+        $this->_adrclient = $p_adrclient;
     }
 
     public function setCodePostal($p_codepostal) {
-        $this->_prixvente = $p_codepostal;
+        $this->_codepostal = $p_codepostal;
     }
 
     public function setCodeCategorie($p_codecategorie) {
-        $this->_variete = $p_codecategorie;
+        $this->_codecategorie = $p_codecategorie;
     }
 
     public function setTelClient($p_telclient) {
-        $this->_prixachatref = $p_telclient;
+        $this->_telclient = $p_telclient;
     }
 
     public function setMelClient($p_melclient) {
-        $this->_prixvente = $p_melclient;
-
-        /**
-         * Méthodes
-         */
+        $this->_melclient = $p_melclient;
+    }
+    
+    public function setMembre($p_membre) {
+        $this->_membre = $p_membre;
     }
 
 }

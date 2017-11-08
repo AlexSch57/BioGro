@@ -18,6 +18,7 @@ class Fournisseur {
     private $_telfourn;
     private $_faxfourn;
     private $_melfourn;
+    private $_membre; // objet de la classe membre
 
     public function __construct (
         $p_nofourn,
@@ -27,7 +28,8 @@ class Fournisseur {
         $p_dateadhesion,
         $p_telfourn,
         $p_faxfourn,
-        $p_melfourn
+        $p_melfourn,
+        $p_membre
     ) {
         $this->setNoFourn($p_nofourn);
         $this->setNomFourn($p_nomfourn);
@@ -37,6 +39,7 @@ class Fournisseur {
         $this->setTelfourn($p_telfourn);
         $this->setFaxFourn($p_faxfourn);
         $this->setMelFourn($p_melfourn);
+        $this->setMembre($p_membre);
     }
     
        /**
@@ -74,6 +77,10 @@ class Fournisseur {
         return $this->_melfourn;
     }
     
+    public function getMembre(){
+        return $this->_membre;
+    }
+    
     /**
      * Mutateurs
     */	
@@ -108,4 +115,8 @@ class Fournisseur {
     public function setMelFourn($p_melfourn){
         $this->_melfourn =  $p_melfourn;
     } 
+    
+    public function setMembre($p_membre) {
+        $this->_membre = $p_membre;
+    }
 }

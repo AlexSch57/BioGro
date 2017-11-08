@@ -110,10 +110,53 @@ class Membre {
     public function setProfil($p_profil){
         $this->_profil = $p_profil;
    }   
-    /**
-     * Méthodes
-    */
+    
    
+   public function isAdmin() {
+       if($_profil == 0)
+       {
+           return true;
+       }
+       else
+       {
+           return false;
+       }
+   }
+   
+     public function isGest() {
+       if($_profil == 1)
+       {
+           return true;
+       }
+       else
+       {
+           return false;
+       }
+   }
+   
+     public function isClient() {
+       if($_profil == 2)
+       {
+           return true;
+       }
+       else
+       {
+           return false;
+       }
+   }
+   
+     public function isFourn() {
+       if($_profil == 3)
+       {
+           return true;
+       }
+       else
+       {
+           return false;
+       }
+   }
  
+   
 }
+
 ?>
