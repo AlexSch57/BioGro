@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li class="smenu">
-                    <a href="" 
+                    <a href="views/admin/deconnexion.php" 
                        title="Se déconnecter">Déconnexion
                     </a>
                 </li>

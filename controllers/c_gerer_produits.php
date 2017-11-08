@@ -31,7 +31,7 @@ $hasErrors = false;
 switch ($action) {
     case 'listerProduits' : {
         $lesProduits = Produits::chargerLesProduits(1);
-        if (!rowsOK($lesProduits)) {
+        if (!Application::rowsOK($lesProduits)) {
             $msg = $lesProduits[0].' : '.$lesProduits[1];
             if (!isAppProd()) {
                 $msg .= '<br />'.$strSQL;

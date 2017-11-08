@@ -34,7 +34,7 @@ class Produits {
    
     public static function chargerLesProduits($mode) {
         $tab = ProduitDal::loadProducts(1);
-        if (Application::dataOK($tab)) {
+        if (Application::rowsOK($tab)) {
             if ($mode == 1) {
                 $res = array();
                 foreach ($tab as $ligne) {
@@ -57,7 +57,7 @@ class Produits {
 
     public static function chargerProduitParId($id) {
         $values = ProduitDal::loadProductByID($id, 1);
-        if (Application::dataOK($values)) {
+        if (Application::rowsOK($values)) {
             $nom = $values[0]->variete;
             $prixAchatRef = $values[0]->prixachatref;
             $prixVente = $values[0]->prixvente;

@@ -114,30 +114,3 @@ function execSQL($cnx,$sql,$params) {
         return $e;
     }
 }
-
-/**
- * Vérifie si un getRows() ou un getValue() ou un execSQL() retourne quelque chose
- * @param   $value : un tableau ou une valeur quelconque
- * @return  bool | array() | NULL
- */    
-function rowsOK($value) {
-    if (($value != NULL) and (!is_a($value,'PDOException'))) {
-        // $value n'est pas null et pas une exception PDO
-        return true;
-    }
-    else {
-        // c'est une exception : renvoie la valeur définie dans le fichier de configuration
-        if (is_a($value,'PDOException')) {
-            // c'est une exception PDO
-            if (isAppProd()) {
-                return array(PDO_EXCEPTION_VALUE,"Une erreur s'est produite, veuillez réessayer ultérieurement");
-            }
-            else {
-                return array(PDO_EXCEPTION_VALUE,$value->getMessage());
-            }
-        }
-    }
-    // sinon, $value est NULL
-    return NULL;
-}  
-

@@ -28,7 +28,7 @@ class MembreDal {
     */   
     public static function loadMembers($style) {
         $cnx = new PdoDao();
-        $qry = 'SELECT * FROM membre';
+        $qry = 'SELECT id_membre, login, password, nom, prenom, email, profil FROM membre';
         $res = $cnx->getRows($qry,array(),$style);
         if (is_a($res,'PDOException')) {
             return PDO_EXCEPTION_VALUE;
@@ -41,10 +41,10 @@ class MembreDal {
      * @param  $id : ID du membre
      * @return  un objet de la classe membre (member)
     */   
-    public static function loadMemberByID($id) {
+    public static function loadMemberByLogin($login) {
         $cnx = new PdoDao();
-        $qry = 'SELECT * FROM membre WHERE id_membre = ?';
-        $res = $cnx->getRows($qry,array($id),1);
+        $qry = 'SELECT * FROM membre WHERE login = ?';
+        $res = $cnx->getRows($qry,array($login),1);
         if (is_a($res,'PDOException')) {
             return PDO_EXCEPTION_VALUE;
         }

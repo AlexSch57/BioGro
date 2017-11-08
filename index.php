@@ -18,11 +18,6 @@ require_once 'model/App/Utilities.class.php';
 require_once 'model/App/Application.class.php';
 require_once 'model/App/Forms.class.php';
 
-// on simule un utilisateur connecté (en phase de test)
-$_SESSION['id'] = 9999;
-$_SESSION['nom'] = 'Dupont';
-$_SESSION['prenom'] = 'Jean';
-
 /*
   Récupère l'uc passée par l'URL.
   Si l'uc est absente, on définit une uc par défaut
@@ -31,13 +26,17 @@ if (isset($_GET["uc"])) {
     $uc = $_GET["uc"];
 }
 else {
-    $uc = 'admin';
+    $uc = 'connexion';
 }
 // charger la uc selon son identifiant
 switch ($uc) 
 {
     case 'admin' : {
         include 'views/admin/v_adm_home.php';
+    }
+    break;
+    case 'gererConnexion' : {
+        include 'controllers/c_connexion.php';
     }
     break;
     case 'gererProduits' : {
@@ -66,10 +65,9 @@ switch ($uc)
     break;
     // autres cas à ajouter...
     default : {
-        include 'views/admin/v_adm_home.php';
+        include 'controllers/c_connexion.php';
     }
     break;
 }
 
 ?>
-

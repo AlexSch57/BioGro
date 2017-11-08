@@ -44,7 +44,7 @@ class Apports {
     public static function chargerLesApports($style) {
         $lesApports = array();
         $tab = ApportDal::loadSupply($style);
-        if(Application::dataOK($tab)) {
+        if(Application::rowsOK($tab)) {
             foreach ($tab as $ligne) {   
                 $produit = ProduitDal::loadProductByID($ligne->codecereale);
                 $silo = SiloDal::loadSiloByID($ligne->codesilo);
@@ -73,7 +73,7 @@ class Apports {
      */
     public static function chargerApportParID($id) {
         $values = ApportDal::loadSupplyByID($id);
-        if (Application::dataOK($values)) {
+        if (Application::rowsOK($values)) {
             foreach ($values as $value) {
                 $produit = ProduitDal::loadProductByID($value->codecereale);
                 $silo = SiloDal::loadSiloByID($value->codesilo);

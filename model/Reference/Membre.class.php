@@ -20,13 +20,11 @@
 class Membre {
     private $_idmembre;
     private $_login;
+    private $_password;
     private $_nom;
     private $_prenom;
-    private $_password;
     private $_email;
     private $_profil;
- 
- 
  
     /**
      * Constructeur
@@ -34,17 +32,17 @@ class Membre {
     public function __construct (
             $p_idmembre,
             $p_login,
-            $p_nom,
-            $p_prenom,
             $p_password,
+            $p_nom,
+            $p_prenom,      
             $p_email,
             $p_profil
     ) {
         $this->setIdMembre($p_idmembre);
         $this->setLogin($p_login);
+        $this->setPassword($p_password);
         $this->setNom($p_nom);
         $this->setPrenom($p_prenom);
-        $this->setPassword($p_password);
         $this->setEmail($p_email);
         $this->setProfil($p_profil);
     }
@@ -100,7 +98,7 @@ class Membre {
     }
    
     public function setPassword($p_password){
-        $this->_password² = $p_password;
+        $this->_password = $p_password;
     }
  
     public function setEmail($p_email){

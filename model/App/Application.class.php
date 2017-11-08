@@ -30,7 +30,7 @@ class Application {
      * @param   $value : un tableau ou une valeur quelconque
      * @return  bool 
      */
-    public static function dataOK($value) {
+    public static function rowsOK($value) {
         return ($value != NULL) && ($value != PDO_EXCEPTION_VALUE);
     }
 
@@ -112,4 +112,32 @@ class Application {
         return $component;
     }
 
+    /*
+     * profils membres
+     */    
+    private static $_profiles = array(
+        array (0,'Administrateur'),
+        array (1,'Gestionnaire'),
+        array (2,'Client'),
+        array (3,'Fournisseur')
+    );
+    
+    /**
+     * Teste si un membre est connecté
+     * @return vrai ou faux 
+     */
+    public static function isConnected() {
+        return isset($_SESSION['id']);
+    }
+
+    /**
+     * Enregistre dans une variable session l'id du visiteur
+     * @param $user : un objet de la classe Membre
+     */    
+    public static function connect($user) {
+        $_SESSION['user']= $user;
+        $_SESSION['id']= $user->getIdMembre();
+        $_SESSION['nom']= $user->getNom();
+        $_SESSION['prenom']= $user->getPrenom();
+    }
 }
