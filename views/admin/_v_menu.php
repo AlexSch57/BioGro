@@ -1,7 +1,8 @@
     <div id="infosUtil">
         <?php echo 'Connecté : '
-            .$_SESSION['prenom']." "
-            .$_SESSION['nom'];
+            .$_SESSION['nom']." "
+            .$_SESSION['prenom']." - "
+            .Application::convertProfiles($_SESSION['profil']);
         ?>
     </div>
     <!-- Division pour le menu -->

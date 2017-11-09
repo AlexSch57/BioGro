@@ -44,7 +44,7 @@ class Application {
      * @param $valeur : une chaîne de caractère contenant le code de la céréale
      * @return un booléen qui indique si la céréale est valide
      */
-    public function cerealeValide($valeur) {
+    public static function cerealeValide($valeur) {
         return preg_match("/^[A-Z][A-Z][0-9][0-9][0-9]$/", $valeur) == 1;
     }
 
@@ -114,13 +114,25 @@ class Application {
 
     /*
      * profils membres
-     */    
-    private static $_profiles = array(
-        array (0,'Administrateur'),
-        array (1,'Gestionnaire'),
-        array (2,'Client'),
-        array (3,'Fournisseur')
-    );
+     */       
+    public static function convertProfiles($profil){
+        if($profil == 0){
+            $profil = "Administrateur";
+        }
+        else if($profil == 1){
+            $profil = "Gestionnaire";
+        }
+        else if($profil == 2){
+            $profil = "Client";
+        }
+        else if($profil == 3){
+            $profil = "Fournisseur";
+        }
+        else{
+            $profil = "Inconnu";
+        }
+        return $profil;
+    }
     
     /**
      * Teste si un membre est connecté
@@ -134,10 +146,11 @@ class Application {
      * Enregistre dans une variable session l'id du visiteur
      * @param $user : un objet de la classe Membre
      */    
-    public static function connect($user) {
-        $_SESSION['user']= $user;
+    public static function connect($user) {;
         $_SESSION['id']= $user->getIdMembre();
         $_SESSION['nom']= $user->getNom();
         $_SESSION['prenom']= $user->getPrenom();
+        $_SESSION['email']= $user->getEmail();
+        $_SESSION['profil']= $user->getProfil();
     }
 }

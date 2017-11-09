@@ -4,8 +4,7 @@
  * Page d'accueil de l'application CAG
  * Point d'entrée unique de l'application
  * 
- * @author  dk
- * @package m5
+ * @author  Dimitri PISANI
  */
 
 // début de session
@@ -13,7 +12,6 @@ session_start();
 
 // inclure les bibliothèques de fonctions
 require_once '_config.inc.php';
-require_once 'model/data.lib.php';
 require_once 'model/App/Utilities.class.php';
 require_once 'model/App/Application.class.php';
 require_once 'model/App/Forms.class.php';
@@ -21,13 +19,20 @@ require_once 'model/App/Forms.class.php';
 /*
   Récupère l'uc passée par l'URL.
   Si l'uc est absente, on définit une uc par défaut
+  en fonction si l'utilisateur est connecté
  */
-if (isset($_GET["uc"])) {
-    $uc = $_GET["uc"];
+if(Application::isConnected()){
+	if (isset($_GET["uc"])) {
+		$uc = $_GET["uc"];
+	}
+	else {
+		$uc = 'admin';
+	}
 }
-else {
-    $uc = 'connexion';
+else{
+	$uc = 'gererConnexion';
 }
+
 // charger la uc selon son identifiant
 switch ($uc) 
 {
@@ -63,7 +68,6 @@ switch ($uc)
         include 'controllers/c_gerer_apports.php'; 
     }
     break;
-    // autres cas à ajouter...
     default : {
         include 'controllers/c_connexion.php';
     }
