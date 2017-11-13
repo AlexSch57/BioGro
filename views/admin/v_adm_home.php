@@ -21,6 +21,7 @@
         include("views/admin/_v_menu.php") ;
         ?>
         <div id="contenu">
+            <?php Application::showNotifications() ?>
             <div id="titre-accueil">
                 <img src="img/biogro.jpg" alt="BioGro" />
                 <span class="gro-titre">

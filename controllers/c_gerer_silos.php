@@ -25,7 +25,7 @@ if (isset($_REQUEST["id"])) {
 
 // gestion des erreurs
 $hasErrors = false;
-
+if ($_SESSION['profil'] == 1) {
 // définition des routes
 switch ($action) {
     case 'listerSilos' : {
@@ -115,4 +115,8 @@ switch ($action) {
         }
     }
     break;
+}} else {
+    $msg = "Accès refusé !";
+    Application::addNotification($msg, MSG_ERROR);
+    header("location:index.php");
 }
