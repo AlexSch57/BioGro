@@ -21,9 +21,12 @@
         include("views/admin/_v_menu.php") ;
         ?>
         <div id="contenu">
-            <?php Application::showNotifications() ?>
-            <h2>Gestion des contrats</h2>
-            <a href="index.php?uc=gererContrats&action=ajouterContrat">Ajouter un contrat</a>
+            <?php Application::showNotifications();
+            if ($_SESSION['profil'] == 1) { ?>
+                <h2>Gestion des contrats</h2>
+                <a href="index.php?uc=gererContrats&action=ajouterContrat">Ajouter un contrat</a>
+            }
+            <?php } ?>
             <br /><br />
             <div class="corpsForm">
                 <fieldset>	

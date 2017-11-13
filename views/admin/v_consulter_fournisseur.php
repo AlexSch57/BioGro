@@ -17,8 +17,8 @@
     </head>
     <body>
         <?php
-        include("views/admin/_v_header.php") ;
-        include("views/admin/_v_menu.php") ;
+        include("views/admin/_v_header.php");
+        include("views/admin/_v_menu.php");
         ?>
         <div id="contenu">
             <?php showNotifications() ?>
@@ -26,8 +26,10 @@
             <div>
                 <div id="breadcrumb">
                     <a href="index.php?uc=gererFournisseurs&action=listerFournisseurs">Retour à la liste</a>&nbsp;
-                    <a href="index.php?uc=gererFournisseurs&action=modifierFournisseur&id=<?php echo $intNoFournisseur ?>">Modifier</a>&nbsp;
-                    <a href="index.php?uc=gererFournisseurs&action=supprimerFournisseur&id=<?php echo $intNoFournisseur ?>">Supprimer</a>
+                    <?php if ($_SESSION['profil'] == 1) { ?>
+                        <a href="index.php?uc=gererFournisseurs&action=modifierFournisseur&id=<?php echo $intNoFournisseur ?>">Modifier</a>&nbsp;
+                        <a href="index.php?uc=gererFournisseurs&action=supprimerFournisseur&id=<?php echo $intNoFournisseur ?>">Supprimer</a>
+                    <?php } ?>
                 </div>
                 <table>
                     <tr>

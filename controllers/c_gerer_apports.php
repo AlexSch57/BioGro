@@ -49,7 +49,7 @@ if ($_SESSION['profil'] == 1 OR $_SESSION['profil'] == 3) {
                     $intNoApport = $_REQUEST["id"];
                     // récupération d'un objet Produit
                     $unApport = Apports::chargerApportParId($id);
-                    if (rowsOK($unApport)) {
+                    if (Application::rowsOK($unApport)) {
                         $strDateApport = $unApport->getNoApport();
                         $strCodeCereale = $unApport->getCereale()[0]->codecereale;
                         $strCodeSilo = $unApport->getSilo()[0]->codesilo;

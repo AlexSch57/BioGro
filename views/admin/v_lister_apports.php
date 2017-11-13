@@ -21,11 +21,13 @@
         include("views/admin/_v_menu.php");
         ?>
         <div id="contenu">
-            <?php Application::showNotifications() ?>
+            <?php Application::showNotifications();
+            if ($_SESSION['profil'] == 1) { ?>
             <h2>Gestion des Apports</h2>
             <a href="index.php?uc=gererApports&action=ajouterApport">
                 Ajouter un apport
             </a>
+            <?php } ?> 
             <br /><br />
             <div class="corpsForm">
                 <fieldset>	

@@ -15,8 +15,6 @@
  * @author 	dk
  * @version    	1.0
  */
-
-
 /*
  *  ====================================================================
  *  Classe Produits : fabrique d'objets Produit
@@ -29,7 +27,7 @@ require_once ('model/Dal/ProduitDal.class.php');
 require_once ('model/Reference/Produit.class.php');
 
 class Produits {
-   
+
     public static function chargerLesProduits($mode) {
         $tab = ProduitDal::loadProducts(0);
         //var_dump($tab);
@@ -38,16 +36,12 @@ class Produits {
                 $res = array();
                 foreach ($tab as $ligne) {
                     $unProduit = new Produit(
-                            $ligne['codecereale'], 
-                            $ligne['variete'],
-                            $ligne['prixachatref'],
-                            $ligne['prixvente']
+                            $ligne['codecereale'], $ligne['variete'], $ligne['prixachatref'], $ligne['prixvente']
                     );
                     array_push($res, $unProduit);
                 }
                 return $res;
-            }
-            else {
+            } else {
                 return $tab;
             }
         }
@@ -60,32 +54,34 @@ class Produits {
             $nom = $values[0]->variete;
             $prixAchatRef = $values[0]->prixachatref;
             $prixVente = $values[0]->prixvente;
-            return new Produit($id,$nom,$prixAchatRef,$prixVente);
+            return new Produit($id, $nom, $prixAchatRef, $prixVente);
         }
         return NULL;
-    }    
-    
+    }
+
     public static function ajouterProduit($valeurs) {
         $id = ProduitDal::addProduct(
-                $valeurs[0],
-                $valeurs[1],
-                $valeurs[2],
-                $valeurs[3]
+                        $valeurs[0], $valeurs[1], $valeurs[2], $valeurs[3]
         );
         return self::chargerProduitParID($id);
     }
 
     public static function modifierProduit($produit) {
-        return ProduitDal::setProduct (
-                $produit->getCode(), 
-                $produit->getNom(),
-                $produit->getPrixAchatRef(),
-                $produit->getPrixVente()
+        return ProduitDal::setProduct(
+                        $produit->getCode(), $produit->getNom(), $produit->getPrixAchatRef(), $produit->getPrixVente()
         );
-    }    
-    
+    }
+
     public static function supprimerProduit($id) {
         return ProduitDal::delProduct($id);
-    }    
-   
+    }
+
+    /**
+     * Charge la liste des produits
+     * @return  array() : un tableau d'objets de la classe apport 
+     */
+    public static function ChargerListeProduits($style) {
+        return ProduitDal::loadProductsList($style);
+    }
+
 }

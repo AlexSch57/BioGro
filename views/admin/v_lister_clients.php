@@ -23,9 +23,11 @@
         <div id="contenu">
             <?php showNotifications() ?>
             <h2>Gestion des clients</h2>
+            <?php if ($_SESSION['profil'] == 1) { ?>
             <a href="index.php?uc=gererClients&action=ajouterClient">
                 Ajouter un clients
             </a>
+            <?php } ?>
             <br /><br />
             <div class="corpsForm">
                 <fieldset>	

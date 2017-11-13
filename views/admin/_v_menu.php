@@ -71,6 +71,11 @@
                        title="Clients">Gestion des clients
                     </a>
                 </li>
+                <li class="smenu">
+                    <a href="index.php?uc=gererContrats" 
+                       title="Contrats">Gestion des contrats
+                    </a>
+                </li>
                 <?php 
                 }
                 if($_SESSION['profil'] == 3){
@@ -78,6 +83,11 @@
                 <li class="smenu">
                     <a href="index.php?uc=gererFournisseurs" 
                        title="Fournisseurs">Gestion des fournisseurs
+                    </a>
+                </li>
+                <li class="smenu">
+                    <a href="index.php?uc=gererApports" 
+                       title="Apports">Gestion des apports
                     </a>
                 </li>
                 <?php 

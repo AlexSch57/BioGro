@@ -47,6 +47,7 @@ if ($_SESSION['profil'] == 0) {
                     $strPrenomMembre = $leMembre->getPrenom();
                     $strEmailMembre = $leMembre->getEmail();
                     $intProfilMembre = $leMembre->getProfil();
+                    $intTelephoneMembre = $leMembre->getTel();
                 } else {
                     $msg = "Ce membre n'existe pas !";
                     Application::addNotification($msg, MSG_ERROR);
@@ -59,12 +60,14 @@ if ($_SESSION['profil'] == 0) {
                 }
             }
             break;
-        case 'ajouterProduit' : {
+        case 'ajouterMembre' : {
                 // initialisation des variables
-                $strCodeProduit = '';
-                $strNomProduit = '';
-                $fltPrixAchat = 0;
-                $fltPrixVente = 0;
+                $strLoginMembre = '';
+                $strPasswordMembre = '';
+                $strNomMembre = '';
+                $strPrenomMembre = '';
+                $strEmailMembre = '';
+                $strProfilMembre = '';
 
                 // traitement de l'option : saisie ou validation ?
                 if (isset($_GET["option"])) {
