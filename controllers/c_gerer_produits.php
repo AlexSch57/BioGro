@@ -9,8 +9,7 @@
  * @package s1
  */
 
-// sollicite la référence
-require_once ('./model/Bll/Produits.class.php');
+require_once 'model/Bll/Produits.class.php';
 
 // récupération de l'action à effectuer
 if (isset($_GET["action"])) {
@@ -22,6 +21,7 @@ else {
 
 if (isset($_REQUEST["id"])) {
     $id = strip_tags($_REQUEST["id"]);
+    $leProduit = Produits::chargerProduitParId($id);
 }
 
 // gestion des erreurs
@@ -29,13 +29,16 @@ $hasErrors = false;
 
 // définition des routes
 switch ($action) {
+    case 'test' : {
+        $leProduit = Produits::chargerProduitParId('BL500');
+        echo $leProduit->estUtiliseParApport();
+        //var_dump($pdts);
+    }
+    break;
     case 'listerProduits' : {
         $lesProduits = Produits::chargerLesProduits(1);
-        if (!Application::rowsOK($lesProduits)) {
-            $msg = $lesProduits[0].' : '.$lesProduits[1];
-            if (!isAppProd()) {
-                $msg .= '<br />'.$strSQL;
-            }
+        if ($lesProduits === PDO_EXCEPTION_VALUE) {
+            $msg = 'Une erreur s\'est produite, contactez votre administrateur';
             Application::addNotification($msg,MSG_ERROR);
             $nbProduits = 0;
         }
@@ -47,25 +50,15 @@ switch ($action) {
     break;
     case 'consulterProduit' : {
         if (isset($_REQUEST["id"])) {
-            $intCodeProduit = $_REQUEST["id"];
-            // récupération d'un objet Produit
-            $leProduit = Produits::chargerProduitParId($id);
-            if (rowsOK($leProduit)) {
-                $strNomProduit = $leProduit->getNom();
-                $fltPrixAchat = $leProduit->getPrixAchatRef();
-                $fltPrixVente = $leProduit->getPrixVente();
-                // rechercher les silos dans lesquels est stocké le produit
-                /* à faire */
-            } 
-            else {
-                $msg = "Ce produit (".$intCodeProduit.") n'existe pas !";
-                Application::addNotification($msg,MSG_ERROR);
-                $hasErrors = true;
-            }
+            $strCodeProduit = $leProduit->getCode();
+            $strNomProduit = $leProduit->getNom();
+            $fltPrixAchat = $leProduit->getPrixAchatRef();
+            $fltPrixVente = $leProduit->getPrixVente();
+            // rechercher les silos dans lesquels est stocké le produit
+            /* à faire */
         } 
         else {
-            // pas d'id dans l'url ni clic sur Valider : c'est anormal
-            $msg = "Aucun identifiant de produit n'a été transmis pour consultation !";
+            $msg = "Ce produit n'existe pas !";
             Application::addNotification($msg,MSG_ERROR);
             $hasErrors = true;
         }
@@ -164,6 +157,8 @@ switch ($action) {
                             include 'views/admin/v_saisir_produit.php';
                         }
                         else {
+                            $msg = "Le contrat a bien été ajouté !";
+                            Application::addNotification($msg,MSG_SUCCESS);
                             header('location:index.php?uc=gererProduits&action=listerProduits');
                         }
                     }

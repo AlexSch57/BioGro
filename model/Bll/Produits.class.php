@@ -24,25 +24,24 @@
  */
 
 // sollicite les méthodes de la classe ProduitDal
-require_once ('./model/Dal/ProduitDal.class.php');
-// sollicite les services de la classe Application
-require_once ('./model/App/Application.class.php');
+require_once ('model/Dal/ProduitDal.class.php');
 // sollicite la référence
-require_once ('./model/Reference/Produit.class.php');
+require_once ('model/Reference/Produit.class.php');
 
 class Produits {
    
     public static function chargerLesProduits($mode) {
-        $tab = ProduitDal::loadProducts(1);
+        $tab = ProduitDal::loadProducts(0);
+        //var_dump($tab);
         if (Application::rowsOK($tab)) {
             if ($mode == 1) {
                 $res = array();
                 foreach ($tab as $ligne) {
                     $unProduit = new Produit(
-                            $ligne->codecereale, 
-                            $ligne->variete,
-                            $ligne->prixachatref,
-                            $ligne->prixvente
+                            $ligne['codecereale'], 
+                            $ligne['variete'],
+                            $ligne['prixachatref'],
+                            $ligne['prixvente']
                     );
                     array_push($res, $unProduit);
                 }
@@ -67,7 +66,7 @@ class Produits {
     }    
     
     public static function ajouterProduit($valeurs) {
-        $id = ProduitDal::addProduit(
+        $id = ProduitDal::addProduct(
                 $valeurs[0],
                 $valeurs[1],
                 $valeurs[2],
@@ -77,8 +76,8 @@ class Produits {
     }
 
     public static function modifierProduit($produit) {
-        return ProduitDal::setProduit (
-                $produit->getID(), 
+        return ProduitDal::setProduct (
+                $produit->getCode(), 
                 $produit->getNom(),
                 $produit->getPrixAchatRef(),
                 $produit->getPrixVente()
@@ -89,11 +88,4 @@ class Produits {
         return ProduitDal::delProduct($id);
     }    
    
-        /**
-     * Charge la liste des produits
-     * @return  array() : un tableau d'objets de la classe apport 
-     */
-    public static function ChargerListeProduits($style) {
-        return ProduitDal::loadProductsList($style);
-        }
 }

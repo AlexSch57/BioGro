@@ -66,20 +66,18 @@ class ClientDal {
             $codePostal,
             $codeCategorie,
             $tel,
-            $mel,
-            $idmembre
+            $mel
     ) {
         $cnx = new PdoDao();
-        $qry = "INSERT INTO contrat (nomclient, adreclient, codepostal, codecategorie, telclient, melclient, idmembre)
-                            VALUES (?,?,?,?,?,?,?)";
+        $qry = "INSERT INTO contrat (nomclient, adreclient, codepostal, codecategorie, telclient, melclient)
+                            VALUES (?,?,?,?,?,?)";
         $res = $cnx->execSQL($qry,array(
             $nom, 
             $adr, 
             $codePostal,
             $codeCategorie,
             $tel,
-            $mel,
-            $idmembre
+            $mel
             )
         );
         if (is_a($res,'PDOException')) {

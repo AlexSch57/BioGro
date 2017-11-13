@@ -26,8 +26,8 @@
             <div>
                 <div id="breadcrumb">
                     <a href="index.php?uc=gererProduits&action=listerProduits">Retour à la liste</a>&nbsp;
-                    <a href="index.php?uc=gererProduits&action=modifierProduit&id=<?php echo $intCodeProduit ?>">Modifier</a>&nbsp;
-                    <a href="index.php?uc=gererProduits&action=supprimerProduit&id=<?php echo $intCodeProduit ?>">Supprimer</a>
+                    <a href="index.php?uc=gererProduits&action=modifierProduit&id=<?php echo $strCodeProduit ?>">Modifier</a>&nbsp;
+                    <a href="index.php?uc=gererProduits&action=supprimerProduit&id=<?php echo $strCodeProduit ?>">Supprimer</a>
                 </div>
                 <table>
                     <tr>
@@ -35,7 +35,7 @@
                             Code :
                         </td>
                         <td class="h-valeur">
-                            <?php echo $intCodeProduit ?>
+                            <?php echo $strCodeProduit ?>
                         </td>
                     </tr>
                     <tr>

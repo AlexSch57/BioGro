@@ -11,6 +11,7 @@
 // Chargement de la classe Fournisseur
 use m5\Reference\Fournisseur;
 
+
 // récupération de l'action à effectuer
 if (isset($_GET["action"])) {
     $action = $_GET["action"];

@@ -1,42 +1,39 @@
 <?php
 /** 
  * 
- * Application Cag
- * © Noël Loïc, 2017
+ * BMG
+ * © GroSoft, 2017
  * 
  * References
  * Classes métier
-
- * @author ln
- * @package m5
+ *
+ *
+ * @package 	default
+ * @author 	Dimitri PISANI
+ * @version    	1.0
  */
 
 /*
  *  ====================================================================
- *  Classe Contrat : représente un contrat de l'exploitation
+ *  Classe Contrat : représente un contrat commercialisé par le coopérative 
  *  ====================================================================
 */
 
-namespace m5\Reference;
-
-
-class Produit {
+class Contrat {
     private $_nocontrat;
-    private $_codecereale;
-    private $_noclient;
+    private $_codeproduit;
+    private $_noclient; // Objet de la classe Client
     private $_datecontrat;
     private $_qtecde;
     private $_prixcontrat;
     private $_etatcontrat;
 
-
-
     /**
      * Constructeur 
-    */	
-    public function __construct (
+    */				
+    public function __construct(
             $p_nocontrat,
-            $p_codecereale,
+            $p_codeproduit,
             $p_noclient,
             $p_datecontrat,
             $p_qtecde,
@@ -44,78 +41,95 @@ class Produit {
             $p_etatcontrat
     ) {
         $this->setNoContrat($p_nocontrat);
-        $this->setCodeCereale($p_codecereale);
+        $this->setCodeProduit($p_codeproduit);
         $this->setNoClient($p_noclient);
         $this->setDateContrat($p_datecontrat);
         $this->setQteCde($p_qtecde);
         $this->setPrixContrat($p_prixcontrat);
         $this->setEtatContrat($p_etatcontrat);
-    }
+    }  
     
     /**
      * Accesseurs
-    */	
-    public function getNoContrat(){
+    */
+    public function getNoContrat() {
         return $this->_nocontrat;
-    }    
-
-    public function getCodeCereale(){
-        return $this->_codecereale;
     }
 
-    public function getNoClient(){
-        return $this->_noclient;
-    }    
+    public function getCodeProduit() {
+        return $this->_codeproduit;
+    }
     
-    public function getDateContrat(){
+    public function getNoClient() {
+        return $this->_noclient;
+    }
+
+    public function getDateContrat() {
         return $this->_datecontrat;
     }
     
-    public function getQteCde(){
+    public function getQteCde() {
         return $this->_qtecde;
     }
-
-    public function getPrixContrat(){
-        return $this->_prixcontrat;
-    }    
     
-    public function getEtatContrat(){
+    public function getPrixContrat() {
+        return $this->_prixcontrat;
+    }
+    
+    public function getEtatContrat() {
         return $this->_etatcontrat;
     }
     
-    
-    /**
-     * Mutateurs
-    */	
-    public function setNoContrat($p_nocontrat){
-        $this->_nocontrat = $p_nocontrat;
+    public function getNomClient() {
+        $value = ContratDal::loadContractByID($this->getNoContrat(), 1);
+        $unNomClient = $value[0]->nomclient;
+        return $unNomClient;
     }
     
-    public function setCodeCereale($p_codecereale){
-        $this->_codecereale = $p_codecereale;
+    public function getNomProduit() {
+        $value = ContratDal::loadContractByID($this->getNoContrat(), 1);
+        $unNomProduit = $value[0]->variete;  
+        return $unNomProduit;
+    }
+    
+    public function getMontantContrat () {
+        return self::getPrixContrat()*self::getQteCde();
+    }
+    
+    public function getQteLiv () {
+        $value = ContratDal::loadContractByID($this->getNoContrat(), 1);
+        $uneQteLiv = $value[0]->qteliv;
+        return $uneQteLiv;
     }
 
-    public function setNoClient($p_noclient){
+    /**
+     * Mutateurs
+    */   
+    public function setNoContrat ($p_nocontrat) {
+        $this->_nocontrat = $p_nocontrat;
+    }
+
+    public function setCodeProduit ($p_codeproduit) {
+        $this->_codeproduit = $p_codeproduit;
+    }
+
+    public function setNoClient ($p_noclient) {
         $this->_noclient = $p_noclient;
     }
     
-    public function setDateContrat($p_datecontrat){
+    public function setDateContrat($p_datecontrat) {
         $this->_datecontrat = $p_datecontrat;
     }
     
-    public function setQteCde($p_qtecde){
-        $this->_qtecde = $p_qtecde;
+    public function setQteCde($p_datecontrat) {
+        $this->_qtecde = $p_datecontrat;
     }
-
-    public function setPrixContrat($p_prixcontrat){
+    
+    public function setPrixContrat($p_prixcontrat) {
         $this->_prixcontrat = $p_prixcontrat;
     }
     
-    public function setEtatContrat($p_etatcontrat){
+    public function setEtatContrat($p_etatcontrat) {
         $this->_etatcontrat = $p_etatcontrat;
-
-    /**
-     * Méthodes
-    */
-    
+    }
 }

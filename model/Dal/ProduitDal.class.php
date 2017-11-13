@@ -94,8 +94,8 @@ class ProduitDal {
         $cnx = new PdoDao();
         $qry = 'UPDATE cereale SET
                     variete = ?, 
-                    prix_achat_ref = ?,
-                    prix_vente = ?
+                    prixachatref = ?,
+                    prixvente = ?
                 WHERE 
                     codecereale = ?';
         $res = $cnx->execSQL($qry,array(
@@ -125,19 +125,45 @@ class ProduitDal {
     } 
     
     /**
-     * charge un tableau de produits
-     * @param  $style : 0 == tableau assoc, 1 == objet
-     * @return  un objet de la classe PDOStatement
-     */
-    public static function loadProductsList($style) {
+     * compte le nombre de silos dans lequel le produit est présent
+     * @param   string $code : le code du produit
+    */      
+    public static function countSilos($code) {
         $cnx = new PdoDao();
-        $qry = 'SELECT codecereale, variete FROM cereale';
-        $res = $cnx->getRows($qry, array(), $style);
-        if (is_a($res, 'PDOException')) {
+        $qry = 'SELECT COUNT(*) FROM silo WHERE codecereale = ?';
+        $res = $cnx->getValue($qry,array($code));
+        if (is_a($res,'PDOException')) {
             return PDO_EXCEPTION_VALUE;
         }
         return $res;
-    }
+    } 
     
-
+    /**
+     * compte le nombre de contrats dans lequel le produit est présent
+     * @param   string $code : le code du produit
+    */      
+    public static function countContrats($code) {
+        $cnx = new PdoDao();
+        $qry = 'SELECT COUNT(*) FROM contrat WHERE codecereale = ?';
+        $res = $cnx->getValue($qry,array($code));
+        if (is_a($res,'PDOException')) {
+            return PDO_EXCEPTION_VALUE;
+        }
+        return $res;
+    }     
+    
+    /**
+     * compte le nombre d'apports dans lequel le produit est présent
+     * @param   string $code : le code du produit
+    */      
+    public static function countApports($code) {
+        $cnx = new PdoDao();
+        $qry = 'SELECT COUNT(*) FROM apport WHERE codecereale = ?';
+        $res = $cnx->getValue($qry,array($code));
+        if (is_a($res,'PDOException')) {
+            return PDO_EXCEPTION_VALUE;
+        }
+        return $res;
+    }     
+    
 }

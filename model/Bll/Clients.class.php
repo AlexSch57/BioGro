@@ -37,7 +37,6 @@ class Clients {
             if ($mode == 1) {
                 $res = array();
                 foreach ($tab as $ligne) {
-                    $membre = MembreDal::loadMemberByID($ligne->idmembre);
                     $unClient = new Client(
                             $ligne['noclient'], 
                             $ligne['nomclient'],
@@ -45,8 +44,7 @@ class Clients {
                             $ligne['codepostal'],
                             $ligne['codecategorie'],
                             $ligne['telclient'],
-                            $ligne['melclient'],
-                            $membre
+                            $ligne['melclient']
                     );
                     array_push($res, $unClient);
                 }
@@ -68,8 +66,7 @@ class Clients {
             $codecategorie = $values[0]->codecategorie;
             $telclient = $values[0]->telclient;
             $melclient = $values[0]->melclient;
-            $membre;
-            return new Client($id,$nomclient,$adrclient,$codepostal,$codecategorie,$telclient,$melclient,$membre);
+            return new Client($id,$nomclient,$adrclient,$codepostal,$codecategorie,$telclient,$melclient);
         }
         return NULL;
     }    
@@ -82,8 +79,7 @@ class Clients {
                 $valeurs[3],
                 $valeurs[4],
                 $valeurs[5],
-                $valeurs[6],
-                $membre
+                $valeurs[6]
         );
         return self::chargerClientParID($id);
     }
@@ -96,8 +92,7 @@ class Clients {
                 $client->getCodePostal(),
                 $client->getCodeCategorie(),
                 $client->getTelClient(),
-                $client->getMelClient(),
-                $client->getMembre()
+                $client->getMelClient()
         );
     }    
     

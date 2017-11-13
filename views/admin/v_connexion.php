@@ -23,9 +23,7 @@
                 </span>
                 <form action="index.php?uc=gererConnexion&action=valideConnexion" method="post">
                     <div class="corpsForm">
-                        <?php Application::showNotifications();
-                             Application::resetNotifications();
-                        ?>
+                        <?php Application::showNotifications();?>
                         <fieldset>
                             <legend>Connexion à l'Intranet</legend>
                             <table>
@@ -61,14 +59,28 @@
                         </fieldset>
                     </div>
                     
+                    <div class="alert alert-info">
+                        <center>
+                            <strong>Compte démo</strong>
+                        </center>
+                        <div style="padding-top:4px;">
+                            Administrateur: dpisani / dimitri<br>
+                            Gestionnaire: lnoel / loic<br>
+                            Client: asch / alex<br>
+                            Fournisseur: dkugel / darius
+                        </div>
+                    </div>
+                    
                     <div class="piedForm">
                         <p>
-                            <input 
-                                id="cmdValider" 
-                                name="cmdValider" 
-                                type="submit"
-                                value="Connexion" 
-                            />
+                            <center>
+                                <input 
+                                    id="cmdValider" 
+                                    name="cmdValider" 
+                                    type="submit"
+                                    value="Connexion" 
+                                />
+                            </center>
                         </p> 
                     </div>
                 </form>

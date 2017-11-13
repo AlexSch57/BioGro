@@ -24,17 +24,16 @@ else {
 
 // constantes pour l'accès à la base de données
 define('DB_SERVER', 'localhost');	// serveur MySql
-define('DB_DATABASE', 'gro_coop_m3');	// nom de la base de données
+define('DB_DATABASE', 'biogro');	// nom de la base de données
 define('DB_USER', 'root');		// nom d'utilisateur
 define('DB_PWD', '');                   // mot de passe
+define('DSN', 'mysql:host='.DB_SERVER.';dbname='.DB_DATABASE);
 
-// La dsn en entier
-define('DSN', 'mysql:dbname='.DB_DATABASE.';host='.DB_SERVER);  // Définition DSN
+// messages d'erreur
+define('MSG_SUCCESS', 'alert alert-success');
+define('MSG_WARNING', 'alert alert-warning');
+define('MSG_INFO', 'alert alert-info');
+define('MSG_ERROR', 'alert alert-error');
 
 // valeur de retour pour les exceptions PDO
 define('PDO_EXCEPTION_VALUE', -9999);
-
-const MSG_SUCCESS = 'alert alert-success';
-const MSG_WARNING = 'alert alert-warning';
-const MSG_INFO = 'alert alert-info';
-const MSG_ERROR = 'alert alert-error';

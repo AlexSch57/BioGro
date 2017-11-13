@@ -1,9 +1,9 @@
 <?php
 /**
  * Projet BioGro
- * Vue : Mise à jour d'un contrat
+ * Vue : Mise à jour d'un produit
  * 
- * @author  ln
+ * @author  dk
  * @package m5
  */
 ?>
@@ -21,7 +21,7 @@
         include("views/admin/_v_menu.php") ;
         ?>
         <div id="contenu">
-            <?php showNotifications() ?>
+            <?php Application::showNotifications(); ?>
             <h2>Gestion des contrats</h2>
             <div>
                 <div id="breadcrumb">
@@ -30,21 +30,20 @@
                 <form action="index.php?uc=gererContrats&action=modifierContrat&option=validerContrat" method="post">
                     <div class="corpsForm">
                         <fieldset>
-                            <legend>Modifier un contrat</legend>
+                            <legend>Modifier un produit</legend>
                             <table>
                                 <tr>
                                     <td>
-                                        <label for="id">
-                                            Numero :
+                                        <label for="txtNoContrat">
+                                            Numéro :
                                         </label>
                                     </td>
                                     <td>
+                                        <?php echo $id ?>
                                         <input 
-                                            type="text" 
-                                            id="txtNoContrat" 
+                                            type="hidden" 
+                                            id="intNoContrat" 
                                             name="id"
-                                            size="5"
-                                            readonly
                                             value="<?php echo $id ?>"
                                         />
                                     </td>
@@ -52,43 +51,42 @@
                                 <tr>
                                     <td>
                                         <label for="txtDateContrat">
-                                            Date:
+                                            Date :
                                         </label>
                                     </td>
                                     <td>
+                                        <?php echo $strDateContrat ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="txtNomClient">
+                                            Client :
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <?php echo $strNomClient ?>
+                                                                             
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <label for="txtProduit">
+                                            Produit :
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <?php echo $strCodeProduit.' - '.$strNomProduit ?>
                                         <input 
-                                            type="date" 
-                                            id="txtDateContrat" 
-                                            name="txtDateContrat"
-                                            size="30" 
-                                            maxlength="50" 
-                                            required
-                                            value="<?php echo substr($strDateContrat, 0,10); ?>"
+                                            type="hidden" 
+                                            id="txtCodeProduit" 
+                                            name="txtCodeProduit"
+                                            value="<?php echo $strCodeProduit; ?>"
                                         />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="cbxClient">
-                                            Client :
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <?php afficherListe($lesClients,'','cbxClient',1,$intNoClient,'') ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td valign="top">
-                                        <label for="cbxLocalite">
-                                            Céréale :
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <?php afficherListe($lesProduits,'','cbxProduit',1,$intNoProduit,'') ?>                                       
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td valign="top">
                                         <label for="txtQteCde">
                                             Quantité :
                                         </label>
@@ -96,46 +94,28 @@
                                     <td>
                                         <input 
                                             type="number" 
+                                            min="1"
                                             id="txtQteCde" 
                                             name="txtQteCde"
-                                            size="15" 
-                                            maxlength="15" 
-                                            required
-                                            value="<?php echo $intQteCde; ?>"
-                                        />                                        
+                                            value="<?php echo $intQteCde ?>"
+                                        />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td valign="top">
+                                    <td>
                                         <label for="txtPrixContrat">
                                             Prix :
                                         </label>
                                     </td>
                                     <td>
                                         <input 
-                                            type="number" 
+                                            type="number"
+                                            min="<?php echo $fltPrixContrat ?>"
                                             id="txtPrixContrat" 
                                             name="txtPrixContrat"
-                                            size="15" 
-                                            maxlength="15" 
-                                            required
-                                            value="<?php echo $fltPrixContrat; ?>"
-                                        />                                        
+                                            value="<?php echo $fltPrixContrat ?>"
+                                        />
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td valign="top">
-                                        <label for="cbxEtat">
-                                            Etat :
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <select name="cbxEtat">
-                                            
-                                            <option <?php if($strEtatContrat=='I') { ?>selected <?php } ?> value="I">Initial</option>
-                                            <option <?php if($strEtatContrat=='C') { ?>selected <?php } ?> value="C">En cours</option>
-                                            <option <?php if($strEtatContrat=='S') { ?>selected <?php } ?> value="S">Soldé</option>
-                                        </select>
                                 </tr>
                             </table>
                         </fieldset>

@@ -56,12 +56,35 @@ class Membres {
         return NULL;
     }
     
-    /**'
-     * Charge l'apport de l'exploitation définit par son id ou NULL si erreur
-     * @return  array() : un tableau d'objets de la classe apport 
+    /**
+     * Charge le membre definit par son login ou NULL si erreur
+     * @return  array() : un tableau d'objets de la classe membre 
      */
     public static function chargerMembreParLogin($login) {
         $values = MembreDal::loadMemberBylogin($login);
+        if (Application::rowsOK($values)) {
+            foreach ($values as $value) {
+                $unMembre = new Membre(
+                        $value->id_membre, 
+                        $value->login, 
+                        $value->password, 
+                        $value->nom, 
+                        $value->prenom, 
+                        $value->email,
+                        $value->profil
+                );
+                return $unMembre;
+            }
+            return NULL;
+        }
+    }
+    
+    /**
+     * Charge le membre definit par son login ou NULL si erreur
+     * @return  array() : un tableau d'objets de la classe membre 
+     */
+    public static function chargerMembreParId($id) {
+        $values = MembreDal::loadMemberById($id);
         if (Application::rowsOK($values)) {
             foreach ($values as $value) {
                 $unMembre = new Membre(

@@ -37,8 +37,8 @@ class MembreDal {
     }
 
     /**
-     * charge un objet de la classe Membre à partir de son ID
-     * @param  $id : ID du membre
+     * charge un objet de la classe Membre à partir de son login
+     * @param  $login : Login du membre
      * @return  un objet de la classe membre (member)
     */   
     public static function loadMemberByLogin($login) {
@@ -49,7 +49,22 @@ class MembreDal {
             return PDO_EXCEPTION_VALUE;
         }
         return $res;
-    }    
+    } 
+    
+    /**
+     * charge un objet de la classe Membre à partir de son id
+     * @param  $id : id du membre
+     * @return  un objet de la classe membre (member)
+    */   
+    public static function loadMemberById($id) {
+        $cnx = new PdoDao();
+        $qry = 'SELECT * FROM membre WHERE id_membre = ?';
+        $res = $cnx->getRows($qry,array($id),1);
+        if (is_a($res,'PDOException')) {
+            return PDO_EXCEPTION_VALUE;
+        }
+        return $res;
+    } 
     
     /**
      * ajoute un membre

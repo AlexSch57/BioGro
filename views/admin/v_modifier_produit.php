@@ -21,7 +21,7 @@
         include("views/admin/_v_menu.php") ;
         ?>
         <div id="contenu">
-            <?php Application::showNotifications() ?>
+            <?php Application::showNotifications(); ?>
             <h2>Gestion des produits</h2>
             <div>
                 <div id="breadcrumb">

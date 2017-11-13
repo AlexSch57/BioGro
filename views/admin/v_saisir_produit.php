@@ -26,6 +26,7 @@
             <div>
                 <div id="breadcrumb">
                     <a href="index.php?uc=gererProduits&action=listerProduits">Retour à la liste</a>&nbsp;
+                    <a href="index.php?uc=gererProduits&action=modifierProduit&id=<?php echo $strCodeProduit ?>">Modifier</a>&nbsp;
                     <a href="index.php?uc=gererProduits&action=supprimerProduit&id=<?php echo $strCodeProduit ?>">Supprimer</a>
                 </div>
                 <form action="index.php?uc=gererProduits&action=ajouterProduit&option=validerProduit" method="post">

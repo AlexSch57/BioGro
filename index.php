@@ -68,6 +68,10 @@ switch ($uc)
         include 'controllers/c_gerer_apports.php'; 
     }
     break;
+    case 'gererMembres' : {
+        include 'controllers/c_gerer_membres.php'; 
+    }
+    break;
     default : {
         include 'controllers/c_connexion.php';
     }
